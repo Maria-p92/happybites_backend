@@ -14,7 +14,7 @@ export const getCompanyDetailsAll = async (req, res) => {
 
 export const getSingleCompany = async (req, res) => {
     try {
-      await dbConnection.query('SELECT * FROM Company_details WHERE company_id=$1',  function(err, result) {
+      await dbConnection.query('SELECT * FROM Company_details WHERE company_id='+ req.params.id,  function(err, result) {
         if (err) throw err;
        res.json(result)
       });
