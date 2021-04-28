@@ -24,7 +24,8 @@ export const getSingleEvent = async (req, res) => {
   };
 
   export const createSingleEvent = async (req, res) => {
-    const newEvent = [[req.body.email, req.body.phone, req.body.guest_number, req.body.event_date, req.body.message, req.body.price]]
+    const {email, phone, guest_number, event_date,message,price} = req.body
+    const newEvent = [[email, phone, guest_number, event_date, message, price]]
     console.log(req.body)
     try {
       await dbConnection.query('INSERT INTO Event_requested (email, phone, guest_number, event_date, message, price) VALUES ?', [newEvent],  function(err, result) {

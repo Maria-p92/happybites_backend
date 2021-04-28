@@ -29,8 +29,8 @@ export const getSingleCompany = async (req, res) => {
 };
 
 export const createCompanyProfile = async (req, res) => {
-  const newCompany = [
-    [
+  const newCompany = 
+   [[
       req.body.company_id,
       req.body.description,
       req.body.images,
@@ -39,8 +39,7 @@ export const createCompanyProfile = async (req, res) => {
       req.body.event_requested,
       req.body.lat,
       req.body.lon
-    ],
-  ];
+    ]];
   try {
     await dbConnection.query(
       "INSERT INTO Company_profile (company_id, description, images, capacity, prices, event_requested, lat, lon) VALUES ?",
