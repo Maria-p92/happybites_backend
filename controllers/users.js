@@ -29,23 +29,23 @@ export const getAllUsers = async (req, res) => {
   };
 
   export const createUser = async (req, res) => {
+        // or do this to reconstruct "const {username, password, email, first_name, last_name, company} = req.body" and remove the req.body from array
     const newUser = [
-      [
-        req.body.username,
+       [req.body.username,
         req.body.password,
         req.body.email,
         req.body.first_name,
         req.body.last_name,
-        req.body.company
-      ],
+        req.body.company]
     ];
+    console.log(req.body);
     try {
       await dbConnection.query(
         "INSERT INTO Users (username, password, email, first_name, last_name, company) VALUES ?",
-        [newCompany],
+        [newUser],
         function (err, result) {
           if (err) throw err;
-          res.json({ newCompany });
+          res.json({ newUser });
           console.log(`User was created`);
         }
       );
