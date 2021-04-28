@@ -1,6 +1,6 @@
 import dbConnection from "../db/mysql.js";
 
-export const getAllLocations = async (req, res) => {
+export const getAllCompanies = async (req, res) => {
   try {
     await dbConnection.query(
       "SELECT location FROM Company_profile",
@@ -14,7 +14,7 @@ export const getAllLocations = async (req, res) => {
   }
 };
 
-export const getSingleLocation = async (req, res) => {
+export const getSingleCompany = async (req, res) => {
   try {
     await dbConnection.query(
       "SELECT location FROM Company_profile WHERE company_id=" + req.params.id,
