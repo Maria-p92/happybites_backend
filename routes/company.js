@@ -7,8 +7,8 @@ import {
 
 const companies = express.Router();
 
-companies.get("/companies", getAllCompanies);
-companies.get("/company/:id", getSingleCompany);
+companies.get("/", getAllCompanies);
+companies.get("/:id", getSingleCompany);
 companies.post("/newcompanyprofile", createCompanyProfile);
 
 
