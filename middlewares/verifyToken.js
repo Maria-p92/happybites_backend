@@ -1,20 +1,17 @@
-import jwt from 'jsonwebtoken'; 
+import jwt from "jsonwebtoken";
 
-export const verifyToken = async ( req, res) => {
-    console.log("token:", req.headers.authorization);
-    const token = req.headers.authorization;
-    if (typeof token !== "undefined") { 
-        try {
-        const{user} = await jwt.verify(token, process.env.SECRET_KEY);
-        console.log("userid:", user); 
-        return user; 
-    } catch(err) {
-        return {message: err.message}
-    } }
-    else {
-        console.log('Token undefined')
-        return null
+const verifyToken = async (req, res, next) => {
+  let token = req.headers["x-access-token"];
+  if (typeof token !== "undefined") {
+    try {
+      const { user } = await jwt.verify(token, process.env.SECRET_KEY);
+      console.log("user:", user);
+      req.user = user;
+      next();
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
+  }
+};
 
-}
-
+export default verifyToken;
