@@ -13,7 +13,6 @@ const app = express();
 const CORSOption = {origin: process.env.ORIGIN || 'http://localhost:3306'} 
 
 
-
 app.use(express.json());
 app.use(cors(CORSOption))
 app.use(morgan('dev'));
