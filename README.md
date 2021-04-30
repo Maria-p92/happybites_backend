@@ -4,7 +4,7 @@
 - get location/id
 - post location/ id
 
-- get company/id + Ainamkoz
+- get company/id + Aina
 - get company/all
 - post company/id
 
@@ -13,7 +13,6 @@
 
 - get user
 - post user
-- delete user
 
 - get recipe
 - post recipe
@@ -25,7 +24,7 @@
 - get likes
 - post likes
 
-- get events/all
+- get events/all + Aina
 - get event/id
 - post event 
 

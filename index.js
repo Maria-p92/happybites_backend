@@ -5,8 +5,10 @@ import 'dotenv/config.js';
 import urlencodedParser from 'urlencoded-parser';
 import companies from './routes/company.js'
 import users from './routes/users.js';
-import events from './routes/events.js'
-import auth from './routes/auth.js'
+import events from './routes/events.js';
+import auth from './routes/auth.js';
+import ideas from './routes/ideas.js';
+import favorites from './routes/favorites.js'
 
 const port = process.env.PORT || 3306;
 const app = express(); 
@@ -17,9 +19,11 @@ app.use(express.json());
 app.use(cors(CORSOption))
 app.use(morgan('dev'));
 app.use(urlencodedParser);
-app.use('/company', companies)
-app.use('/users', users)
-app.use('/', events)
+app.use('/company', companies);
+app.use('/users', users);
+app.use('/events', events);
+app.use('/ideas', ideas);
+app.use('/favorites', favorites);
 app.use('/', auth)
 
 

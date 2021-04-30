@@ -7,8 +7,8 @@ import {
 
 const events = express.Router();
 
-events.get("/events", getEventsAll);
-events.get("/event/:id", getSingleEvent);
+events.get("/", getEventsAll);
+events.get("/:id", getSingleEvent);
 events.post("/requestevent", createSingleEvent);
 
 

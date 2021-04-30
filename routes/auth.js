@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken';
 import express from 'express';
 import {signIn, register, getUserInfo} from '../controllers/auth.js';
 import verifyToken from '../middlewares/verifyToken.js'

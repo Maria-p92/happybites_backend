@@ -11,19 +11,19 @@ export const register = async (req, res) =>  {
         if(err) throw err; 
         if(results.length > 0)
         {
-            res.send(JSON.stringify({"status": 302, "error": 'User is found with that email'}))
+            res.send(JSON.stringify({"status": 302, "error": 'The user with this email already exists'}))
         return; 
         }
         req.body.password = await bcrypt.hash(req.body.password, 12); 
         console.log('password:', req.body.password)
         const user= {
-            username: req.body.name,
+            username: req.body.username,
             email: req.body.email,
             password: req.body.password,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             company: req.body.company
-        }        
+        }         
         let sql = "INSERT INTO Users SET ?"; 
         let query = dbConnection.query(sql, user,(err, results) => {
             if(err) throw err; 
