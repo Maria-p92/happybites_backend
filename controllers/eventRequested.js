@@ -2,7 +2,9 @@ import dbConnection from '../db/mysql.js'
 
 export const getEventsAll = async (req, res) => {
   try {
-    await dbConnection.query('SELECT * FROM Event_requested', function(err, result) {
+    await dbConnection.query
+    ("SELECT * FROM Event_requested JOIN Users ON Event_requested.event_id=Users.user_id", 
+    function(err, result) {
       if (err) throw err;
      res.json(result)
     });
@@ -13,7 +15,7 @@ export const getEventsAll = async (req, res) => {
 
 export const getSingleEvent = async (req, res) => {
     try {
-      await dbConnection.query('SELECT * FROM Event_requested WHERE event_id=' + req.params.id, function(err, result) {
+      await dbConnection.query("SELECT * FROM Event_requested JOIN Users ON Event_requested.event_id=Users.user_id WHERE event_id=" + req.params.id, function(err, result) {
         if (err) throw err;
        res.json(result)
       });

@@ -2,7 +2,7 @@ import dbConnection from '../db/mysql.js'
 
 export const getFavsAll = async (req, res) => {
   try {
-    await dbConnection.query("SELECT * FROM Favorites JOIN User_profile ON Favorites.fav_id=User_profile.user_id", function(err, result) {
+    await dbConnection.query("SELECT * FROM Favorites JOIN User_profile ON Favorites.fav_id=User_profile.user_id JOIN Ideas ON Favorites.fav_id=Ideas.idea_id JOIN Users ON Favorites.fav_id=Users.user_id", function(err, result) {
       if (err) throw err;
      res.json(result)
     });
@@ -12,8 +12,9 @@ export const getFavsAll = async (req, res) => {
 };
 
 export const getSingleFav = async (req, res) => {
+
     try {
-      await dbConnection.query("SELECT * FROM Favorites JOIN User_profile ON Favorites.fav_id=User_profile.user_id WHERE Favorites.fav_id=" + req.params.id, function(err, result) {
+      await dbConnection.query("SELECT * FROM Favorites JOIN User_profile ON Favorites.fav_id=User_profile.user_id JOIN Ideas ON Favorites.fav_id=Ideas.idea_id JOIN Users ON Favorites.fav_id=Users.user_id WHERE Favorites.fav_id=" + req.params.id, function(err, result) {
         if (err) throw err;
        res.json(result)
       });
@@ -22,17 +23,14 @@ export const getSingleFav = async (req, res) => {
     }
   };
 
-  export const createSingleFav = async (req, res) => {
-    const { } = req.body
-    const newIdea = [[category, title, description, images, products, company, likes]]
-    console.log(req.body)
+  export const addToFav = async (req, res) => {
+    const newFav = [[]]
     try {
-      await dbConnection.query('INSERT INTO Ideas (category, title, description, images, products, company, likes) VALUES ?', [newIdea],  function(err, result) {
+      await dbConnection.query('INSERT INTO Favorites () VALUES ?', [newFav],  function(err, result) {
         if (err) throw err;
-       res.json({newIdea})
+       res.json({newFav})
       });
     } catch (error) {
       res.status(500).json(error);
     }
   };
-
