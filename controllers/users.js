@@ -3,7 +3,7 @@ import dbConnection from "../db/mysql.js";
 export const getAllUsers = async (req, res) => {
     try {
       await dbConnection.query(
-        "SELECT * FROM Users JOIN User_profile ON Users.user_id=User_profile.profileUser_id",
+        "SELECT * FROM Users",
         function (err, result) {
           if (err) throw err;
           res.json(result);
@@ -17,7 +17,7 @@ export const getAllUsers = async (req, res) => {
   export const getSingleUser = async (req, res) => {
     try {
       await dbConnection.query(
-        "SELECT * FROM Users JOIN User_profile ON Users.user_id=User_profile.profileUser_id WHERE Users.user_id=" + req.params.id,
+        "SELECT * FROM Users WHERE Users.user_id=" + req.params.id,
         function (err, result) {
           if (err) throw err;
           res.json(result);

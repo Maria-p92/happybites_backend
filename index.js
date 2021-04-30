@@ -17,7 +17,7 @@ const CORSOption = {origin: process.env.ORIGIN || 'http://localhost:3306'}
 
 
 app.use(express.json());
-app.use(cors(CORSOption))
+app.use(cors({origin: process.env.ORIGIN ? process.env.ORIGIN  :'*'}))
 app.use(morgan('dev'));
 app.use(urlencodedParser);
 app.use('/company', companies);
