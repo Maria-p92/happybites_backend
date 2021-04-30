@@ -1,4 +1,5 @@
 import dbConnection from "../db/mysql.js";
+import verifyToken from '../middlewares/verifyToken.js'
 
 export const getAllUserProfiles = async (req, res) => {
     try {
@@ -29,12 +30,20 @@ export const getAllUserProfiles = async (req, res) => {
   };
 
   export const createUserProfile = async (req, res) => {
+    const {id, company} = req.user
     const newUserProfile = [
        [req.body.username,
         req.body.favorites]
     ];
     console.log(req.body);
     try {
+      if(company){
+        //insert into companyProfile has a foreign key to users (use the id from req.user)
+      } else{
+        // insert into userProfile has a foreign key to users (use the id from req.user)
+      }
+
+
       await dbConnection.query(
         "INSERT INTO User_profile (username, favorites) VALUES ?",
         [newUserProfile],

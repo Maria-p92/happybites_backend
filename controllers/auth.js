@@ -4,17 +4,16 @@ import _ from 'lodash';
 import bcrypt from 'bcrypt';
 
 // registration 
-export const register = async (req, res) =>  {
+export const register = (req, res) =>  {
     let sql = "SELECT * FROM Users WHERE email='" + req.body.email+"'"; 
     console.log('sql: ', sql); 
     let query = dbConnection.query(sql, async (err, results) => {
         if(err) throw err; 
         if(results.length > 0)
         {
-            res.send(JSON.stringify({"status": 302, "error": 'The user with this email already exists'}))
-        return; 
+        return  res.send(JSON.stringify({"status": 302, "error": 'The user with this email already exists'}))
         }
-        req.body.password = await bcrypt.hash(req.body.password, 12); 
+        req.body.password = await bcrypt.hash(req.body.password, 10); 
         console.log('password:', req.body.password)
         const user= {
             username: req.body.username,
@@ -23,18 +22,27 @@ export const register = async (req, res) =>  {
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             company: req.body.company
-        }         
-        let sql = "INSERT INTO Users SET ?"; 
+        }    
+            
+        let sql = "INSERT INTO Users SET ? " ; 
         let query = dbConnection.query(sql, user,(err, results) => {
             if(err) throw err; 
-        res.send(JSON.stringify({"status": 200, "error": null, "response": results}))     
+            console.log(results)
+            const token = jwt.sign({
+                id: results.insertId,
+                company: user.company
+            }, 
+            process.env.SECRET_KEY, {
+                expiresIn: '1h', 
+            });  
+        res.status(201).json({token})    
      });
     });
 }
 
 
 //login 
-export const signIn = async (req, res) =>  {
+export const signIn =  (req, res) =>  {
     let sql = "SELECT * FROM Users WHERE email='" + req.body.email+"'"; 
     console.log('sql: ', sql); 
     let query = dbConnection.query(sql, async (err, results) => {
@@ -52,16 +60,18 @@ export const signIn = async (req, res) =>  {
         }
         //verify, secret | used for auth
         const token = jwt.sign({
-            user: _.pick(results[0], ['user_id', 'email']),
+            id: results[0].user_id,
+            company: results[0].company
         }, 
         process.env.SECRET_KEY, {
-            expiresIn: '5m', 
+            expiresIn: '1h', 
         }); 
-        res.send(JSON.stringify({"status": 200, "error": null, "token": token }))
+        res.status(200).json( {token} )
     });
 }
 
 
 export const getUserInfo = async (req, res) => {
-   await res.send('Hello there');
+   /*  res.send(req.user); */
+    res.send('Hello there');
   };
