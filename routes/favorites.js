@@ -1,15 +1,14 @@
 import express from 'express';
 import {
     getFavsAll, 
-    getSingleFav, 
-    createSingleFav
+    getSingleFav,
+    addToFav
 } from '../controllers/favorites.js';
 
-const ideas = express.Router();
+const favorites = express.Router();
 
-ideas.get("/", getFavsAll);
-ideas.get("/:id", getSingleFav);
-ideas.post("/add-to-fav", createSingleFav);
+favorites.get("/", getFavsAll);
+favorites.get("/:id", getSingleFav);
+favorites.post('/add-to-fav', addToFav);
 
-
-export default ideas;
+export default favorites;
