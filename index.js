@@ -9,6 +9,7 @@ import events from './routes/events.js';
 import auth from './routes/auth.js';
 import ideas from './routes/ideas.js';
 import favorites from './routes/favorites.js'
+import userprofile from './routes/userprofile.js'
 
 const port = process.env.PORT || 3306;
 const app = express(); 
@@ -24,6 +25,7 @@ app.use('/users', users);
 app.use('/events', events);
 app.use('/ideas', ideas);
 app.use('/favorites', favorites);
+app.use('/userprofile', userprofile);
 app.use('/', auth)
 
 
