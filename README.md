@@ -28,4 +28,31 @@
 - get event/id
 - post event 
 
+# Endpoints
 
+- users
+/users - to get all Users
+/users/:id - to get single user by id
+
+- userprofile
+/userprofile - to get all User_profile
+/ideas/create-idea - to post an new idea/userprofile/:id - to get single User_profile by id
+/userprofile/newuserprofile - to post new profile in company or user profile
+
+- company
+/company - to get all companies
+/company/:id - to get single company by id
+
+- events
+/events - to get all events
+/events/:id - to get single event by id
+/events/requestevent - to post an new event
+
+- favorites
+/favorites - to get all favorites
+/favorites/:id - to get single favorite by id
+/favorites/add-to-fav - to post a new favorite
+
+- idea
+/ideas - to get all ideas
+/ideas/:id - to get single idea by id
