@@ -6,7 +6,7 @@ import {
 } from '../controllers/userProfile.js'
 import verifyToken from '../middlewares/verifyToken.js'
 
-const userprofile = express.Router();
+const userprofile = express.Router(); 
 
 userprofile.get("/", getAllUserProfiles);
 userprofile.get("/:id", getSingleUserProfile);

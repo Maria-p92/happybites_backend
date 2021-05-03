@@ -28,7 +28,7 @@ export const getAllUsers = async (req, res) => {
     }
   };
 
-  export const createUser = async (req, res) => {
+  /* export const createUser = async (req, res) => {
         // or do this to reconstruct "const {username, password, email, first_name, last_name, company} = req.body" and remove the req.body from array
     const newUser = [
        [req.body.username,
@@ -53,3 +53,4 @@ export const getAllUsers = async (req, res) => {
       res.status(500).json(error);
     }
   };
+ */
