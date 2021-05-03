@@ -73,5 +73,5 @@ export const signIn =  (req, res) =>  {
 
 export const getUserInfo = async (req, res) => {
    /*  res.send(req.user); */
-    res.send('Hello there');
+    res.json({success: true, ...req.user})
   };

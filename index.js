@@ -11,11 +11,11 @@ import ideas from './routes/ideas.js';
 import favorites from './routes/favorites.js'
 import userprofile from './routes/userprofile.js'
 
-const port = process.env.PORT || 3306;
+const port = process.env.PORT || 5000;
 const app = express(); 
-const CORSOption = {origin: process.env.ORIGIN || 'http://localhost:3306'} 
+const CORSOption = {origin: process.env.ORIGIN || 'http://localhost:3000'} 
 
-
+app.disable('etag');
 app.use(express.json());
 app.use(cors({origin: process.env.ORIGIN ? process.env.ORIGIN  :'*'}))
 app.use(morgan('dev'));
