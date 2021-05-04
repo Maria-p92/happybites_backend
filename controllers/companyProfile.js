@@ -38,11 +38,12 @@ export const createCompanyProfile = async (req, res) => {
       req.body.capacity,
       req.body.event_requested,
       req.body.lat,
-      req.body.lon
+      req.body.lon,
+      reg.body.address
     ]];
   try {
     await dbConnection.query(
-      "INSERT INTO Company_profile (company_id, description, images, capacity, prices, event_requested, lat, lon) VALUES ?",
+      "INSERT INTO Company_profile (company_id, description, images, capacity, prices, event_requested, lat, lon, address) VALUES ?",
       [newCompany],
       function (err, result) {
         if (err) throw err;
