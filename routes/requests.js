@@ -1,7 +1,7 @@
 import express from 'express';
 import {
     getRequestsAll, 
-    getSingleRequest, 
+    getSingleRequestPerUser, 
     createSingleRequest
 } from '../controllers/companyRequests.js';
 import verifyToken from '../middlewares/verifyToken.js'
@@ -9,7 +9,7 @@ import verifyToken from '../middlewares/verifyToken.js'
 const requests = express.Router();
 
 requests.get("/", getRequestsAll);
-requests.get("/:id", getSingleRequest);
+requests.get("/:id", getSingleRequestPerUser);
 requests.post("/requestevent",  verifyToken, createSingleRequest);
 
 

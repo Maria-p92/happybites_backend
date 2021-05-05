@@ -45,7 +45,7 @@
 
 - requests/events
 /requests - to get all event requests
-/requests/:id - to get single event request by id
+/requests/:id - to get single event request by id/per user
 /requests/requestevent - to post an new event
 
 - favorites
