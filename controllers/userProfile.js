@@ -48,7 +48,7 @@ export const createUserProfile = async (req, res) => {
         function (err, result) {
           if (err) throw err;
           res.json({ newUserProfile });
-          console.log(`User profile was created`);
+          console.log(`Company profile was created`);
         }
       );
     } else {
