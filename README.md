@@ -36,17 +36,17 @@
 
 - userprofile
 /userprofile - to get all User_profile
-/ideas/create-idea - to post an new idea/userprofile/:id - to get single User_profile by id
+/userprofile/:id - to get single User_profile by id
 /userprofile/newuserprofile - to post new profile in company or user profile
 
 - company
 /company - to get all companies
 /company/:id - to get single company by id
 
-- events
-/events - to get all events
-/events/:id - to get single event by id
-/events/requestevent - to post an new event
+- requests/events
+/requests - to get all event requests
+/requests/:id - to get single event request by id
+/requests/requestevent - to post an new event
 
 - favorites
 /favorites - to get all favorites
@@ -56,3 +56,9 @@
 - idea
 /ideas - to get all ideas
 /ideas/:id - to get single idea by id
+/ideas/create-idea - to post an new idea
+
+- services
+/services - to get all services
+/services/:id - to get single service by id
+/services/newservice - to post an new service
