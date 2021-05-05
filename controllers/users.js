@@ -28,7 +28,7 @@ export const getAllUsers = async (req, res) => {
     }
   };
 
-  export const createUser = async (req, res) => {
+  /* export const createUser = async (req, res) => {
       const {username, password, email, first_name, last_name, company} = req.body
     const newUser = [
        [username,
@@ -53,3 +53,4 @@ export const getAllUsers = async (req, res) => {
       res.status(500).json(error);
     }
   };
+ */
