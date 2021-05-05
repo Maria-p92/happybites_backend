@@ -25,17 +25,21 @@ export const getSingleService = async (req, res) => {
   };
 
   export const createSingleService = async (req, res) => {
-    const {id} = req.user
-    const {service_name, description, address, likes, lat, lon, prices, images} = req.body
-    const newService = [[id, service_name, description, address, likes, lat, lon, prices, images]]
+    const {company} = req.user
+    if (company) {
+      const {company_id, service_name, description, address, likes, lat, lon, prices, images} = req.body
+    const newService = [[ company_id, service_name, description, address, likes, lat, lon, prices, images]]
     console.log(req.body)
     try {
-      await dbConnection.query('INSERT INTO Company_services (service_id, service_name, description, address, likes, lat, lon, prices, images) VALUES ?', [newService],  function(err, result) {
+      await dbConnection.query('INSERT INTO Company_services (company_id, service_name, description, address, likes, lat, lon, prices, images) VALUES ?', [newService],  function(err, result) {
         if (err) throw err;
        res.json({newService})
       });
     } catch (error) {
       res.status(500).json(error);
+    }
+    } else {
+      res.status(403).json({error: "User should be a company"})
     }
   };
 
