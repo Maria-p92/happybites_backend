@@ -38,13 +38,14 @@ app.get('/', (req, res) => res.send(`<h1>Welcome to the API</h1><h2>Users</h2>
 <h2>User_profile</h2>
 <p>To get all User_profile: /userprofile</p>
 <p>To get single User_profile by id: /userprofile/:id</p>
+<p>To post new profile in company or user profile: /userprofile/newuserprofile</p>
 <h2>Company</h2>
 <p>To get all companies: /company</p>
 <p>To get single company by id: /company/:id</p>
-<h2>Events</h2>
-<p>To get all events: /events</p>
-<p>To get single event by id: /events/:id</p>
-<p>To post an new event: /events/requestevent</p>
+<h2>Requests/Events</h2>
+<p>To get all requests: /requests</p>
+<p>To get single requests by id: /requests/:id</p>
+<p>To post an new requests: /requests/requestevent</p>
 <h2>Favorites</h2>
 <p>To get all favorites: /favorites</p>
 <p>To get single favorite by id: /favorites/:id</p>
@@ -52,5 +53,9 @@ app.get('/', (req, res) => res.send(`<h1>Welcome to the API</h1><h2>Users</h2>
 <h2>Ideas</h2>
 <p>To get all ideas: /ideas</p>
 <p>To get single idea by id: /ideas/:id</p>
-<p>To post an new idea: /ideas/create-idea</p>`));
+<p>To post an new idea: /ideas/create-idea</p>
+<h2>Services</h2>
+<p>To get all services: /services</p>
+<p>To get single services by id: /services/:id</p>
+<p>To post an new services: /services/newservice</p>`));
 app.listen(port, () => console.log(`Application running in Port ${port}`));
