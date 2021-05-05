@@ -35,7 +35,7 @@ export const register = (req, res) =>  {
             process.env.SECRET_KEY, {
                 expiresIn: '1h', 
             });  
-        res.status(201).json({token})    
+        res.status(201).json({token, company: req.body.company})    
      });
     });
 }
@@ -66,7 +66,7 @@ export const signIn =  (req, res) =>  {
         process.env.SECRET_KEY, {
             expiresIn: '1h', 
         }); 
-        res.status(200).json( {token} )
+        res.status(200).json( {token, company: results[0].company} )
     });
 }
 

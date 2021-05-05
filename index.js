@@ -5,11 +5,12 @@ import 'dotenv/config.js';
 import urlencodedParser from 'urlencoded-parser';
 import companies from './routes/company.js'
 import users from './routes/users.js';
-import events from './routes/events.js';
+import requests from './routes/requests.js';
 import auth from './routes/auth.js';
 import ideas from './routes/ideas.js';
 import favorites from './routes/favorites.js'
 import userprofile from './routes/userprofile.js'
+import services from './routes/services.js'
 
 const port = process.env.PORT || 5000;
 const app = express(); 
@@ -22,10 +23,11 @@ app.use(morgan('dev'));
 app.use(urlencodedParser);
 app.use('/company', companies);
 app.use('/users', users);
-app.use('/events', events);
+app.use('/requests', requests);
 app.use('/ideas', ideas);
 app.use('/favorites', favorites);
 app.use('/userprofile', userprofile);
+app.use('/services', services);
 app.use('/', auth)
 
 
