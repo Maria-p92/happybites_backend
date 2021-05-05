@@ -67,16 +67,3 @@ export const createUserProfile = async (req, res) => {
     res.status(500).json(error);
   }
 };
-
-/*   Users
-1 Test false
-2 Test2 true
-
-  User_profile
-1 1 ...data
-  Company_profile 
-1 2 ...data
-2 2 ...data
-2 2 ...data
-2 2 ...data
- */
