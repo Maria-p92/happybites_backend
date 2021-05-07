@@ -17,7 +17,7 @@ export const getServicesAll = async (req, res) => {
 export const getSingleService = async (req, res) => {
   try {
     await dbConnection.query(
-      "SELECT * FROM Company_services WHERE company_id=" +
+      "SELECT * FROM Company_services WHERE service_id=" +
         req.params.id,
       function (err, result) {
         if (err) throw err;
@@ -37,11 +37,14 @@ export const createSingleService = async (req, res) => {
       service_name,
       description,
       address,
-      likes,
+      rating,
       lat,
       lon,
       prices,
       images,
+      phone, 
+      capacity,
+      assortment
     } = req.body;
     const newService = [
       [
@@ -49,17 +52,20 @@ export const createSingleService = async (req, res) => {
         service_name,
         description,
         address,
-        likes,
+        rating,
         lat,
         lon,
         prices,
         images,
+        phone, 
+        capacity,
+        assortment
       ],
     ];
     console.log(req.body);
     try {
       await dbConnection.query(
-        "INSERT INTO Company_services (company_id, service_name, description, address, likes, lat, lon, prices, images) VALUES ?",
+        "INSERT INTO Company_services (company_id, service_name, description, address, rating, lat, lon, prices, images, phone, capacity, assortment) VALUES ?",
         [newService],
         function (err, result) {
           if (err) throw err;
