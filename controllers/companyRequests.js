@@ -3,7 +3,7 @@ import dbConnection from "../db/mysql.js";
 export const getRequestsAll = async (req, res) => {
   try {
     await dbConnection.query(
-      "SELECT service_name, description, address,likes, lat, lon, prices, images, event_id, email, phone, guest_number, event_date, message, price, profileUser_id FROM Company_services JOIN Company_requests ON Company_requests.company_id=Company_services.company_id",
+      "SELECT  email, phone, guest_number, event_date, message, price, user_id, service_id, company_id FROM Company_requests JOIN User_profile ON Company_requests.event_id=User_profile.profileUser_id",
       function (err, result) {
         if (err) throw err;
         res.json(result);
@@ -17,7 +17,7 @@ export const getRequestsAll = async (req, res) => {
 export const getSingleRequestPerUser = async (req, res) => {
   try {
     await dbConnection.query(
-      "SELECT * FROM Company_services JOIN Company_requests ON Company_requests.company_id=Company_services.company_id WHERE Company_services.company_id=" +
+      "SELECT * FROM Company_requests JOIN User_profile ON Company_requests.event_id=User_profile.profileUser_id WHERE User_profile.profileUser_id=" +
         req.params.id,
       function (err, result) {
         if (err) throw err;
