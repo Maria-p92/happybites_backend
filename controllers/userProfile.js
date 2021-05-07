@@ -15,15 +15,28 @@ export const getAllUserProfiles = async (req, res) => {
 };
 
 export const getSingleUserProfile = async (req, res) => {
+  const {id, company} = req.user
+  console.log(company)
   try {
-    await dbConnection.query(
-      "SELECT * FROM User_profile JOIN Users ON User_profile.profileUser_id=Users.user_id WHERE User_profile.profileUser_id=" +
-        req.params.id,
-      function (err, result) {
-        if (err) throw err;
-        res.json(result);
-      }
-    );
+    if(company){
+      await dbConnection.query(
+        "SELECT Company_profile.company_name, Company_profile.address, Company_profile.profile_pic  FROM Company_profile JOIN Users ON Company_profile.user_id=Users.user_id WHERE Users.user_id=" +
+          req.user.id,
+        function (err, result) {
+          if (err) throw err;
+          res.json({company: true, result});
+        }
+      );
+    } else{
+      await dbConnection.query(
+        "SELECT User_profile.profileUser_id, User_profile.username, User_profile.profile_pic  FROM User_profile JOIN Users ON User_profile.user_id=Users.user_id WHERE Users.user_id=" +
+          req.user.id,
+        function (err, result) {
+          if (err) throw err;
+          res.json({company: false, result});
+        }
+      );
+    }
   } catch (error) {
     res.status(500).json(error);
   }
