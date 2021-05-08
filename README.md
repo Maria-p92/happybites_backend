@@ -62,3 +62,7 @@
 /services - to get all services
 /services/:id - to get single service by id
 /services/newservice - to post an new service
+
+- images URL sample:
+events aka restaurants link: http://localhost:5000/uploads/event_img_1620475924978.jpg 
+profile images link: http://localhost:5000/uploads/profile_img_1620474741106.jpg
