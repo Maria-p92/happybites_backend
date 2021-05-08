@@ -26,6 +26,7 @@ export const getSingleIdea = async (req, res) => {
 };
 
 export const createSingleIdea = async (req, res) => {
+  const idea_img = req.file.filename
   const { company } = req.user;
   if (company) {
     const {
@@ -44,7 +45,7 @@ export const createSingleIdea = async (req, res) => {
         category,
         title,
         description,
-        images,
+        idea_img,
         products,
         company,
         ratings
