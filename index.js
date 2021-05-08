@@ -10,11 +10,23 @@ import auth from './routes/auth.js';
 import ideas from './routes/ideas.js';
 import favorites from './routes/favorites.js'
 import userprofile from './routes/userprofile.js'
-import services from './routes/services.js'
+import services from './routes/services.js'; 
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import imageRouter from './routes/images.js'
+
 
 const port = process.env.PORT || 5000;
 const app = express(); 
 const CORSOption = {origin: process.env.ORIGIN || 'http://localhost:3000'} 
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+
+// statis files 
+app.use('/uploads', express.static('uploads'));
 
 app.disable('etag');
 app.use(express.json());
@@ -28,7 +40,12 @@ app.use('/ideas', ideas);
 app.use('/favorites', favorites);
 app.use('/userprofile', userprofile);
 app.use('/services', services);
+app.use("/images", imageRouter);
 app.use('/', auth)
+
+
+
+
 
 
 

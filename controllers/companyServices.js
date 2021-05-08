@@ -31,6 +31,7 @@ export const getSingleService = async (req, res) => {
 
 export const createSingleService = async (req, res) => {
   const { company } = req.user;
+  const event_img = req.file.filename
   if (company) {
     const {
       company_id,
@@ -56,7 +57,7 @@ export const createSingleService = async (req, res) => {
         lat,
         lon,
         prices,
-        images,
+        event_img,
         phone, 
         capacity,
         assortment
