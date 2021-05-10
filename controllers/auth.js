@@ -7,6 +7,7 @@ import bcrypt from 'bcrypt';
 export const register = (req, res) =>  {
     let sql = "SELECT * FROM Users WHERE email='" + req.body.email+"'"; 
     console.log('sql: ', sql); 
+    const company = req.body.customertype === 'company' ? true: false
     let query = dbConnection.query(sql, async (err, results) => {
         if(err) throw err; 
         if(results.length > 0)
@@ -21,7 +22,7 @@ export const register = (req, res) =>  {
             password: req.body.password,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
-            company: req.body.company
+            company
         }    
             
         let sql = "INSERT INTO Users SET ? " ; 
@@ -30,7 +31,7 @@ export const register = (req, res) =>  {
             console.log(results)
             const token = jwt.sign({
                 id: results.insertId,
-                company: user.company
+                company
             }, 
             process.env.SECRET_KEY, {
                 expiresIn: '1h', 
