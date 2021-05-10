@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import { version } from "mongoose";
 
 const verifyToken = async (req, res, next) => {
   console.log(req.body)
