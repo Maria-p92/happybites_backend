@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
+import { version } from "mongoose";
 
 const verifyToken = async (req, res, next) => {
+  console.log(req.body)
   const {token} = req.headers
   if (!token) return res.sendStatus(403);
   try {
