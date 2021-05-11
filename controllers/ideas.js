@@ -57,7 +57,7 @@ export const createSingleIdea = async (req, res) => {
         [newIdea],
         function (err, result) {
           if (err) throw err;
-          res.json({ newIdea });
+          res.json({ ...req.body, images: idea_img });
         }
       );
     } catch (error) {

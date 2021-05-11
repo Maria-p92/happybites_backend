@@ -20,7 +20,7 @@ export const getSingleUserProfile = async (req, res) => {
   try {
     if(company){
       await dbConnection.query(
-        "SELECT Company_profile.company_name, Company_profile.address, Company_profile.profile_pic, Company_profile.phone  FROM Company_profile JOIN Users ON Company_profile.user_id=Users.user_id WHERE Users.user_id=" +
+        "SELECT Company_profile.company_id, Company_profile.company_name, Company_profile.address, Company_profile.profile_pic, Company_profile.phone  FROM Company_profile JOIN Users ON Company_profile.user_id=Users.user_id WHERE Users.user_id=" +
           req.user.id,
         function (err, result) {
           if (err) throw err;
